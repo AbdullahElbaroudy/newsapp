@@ -1,4 +1,4 @@
 
-String baseApiURL =" http://127.0.0.1:8000" ;
+String baseApiURL ="https://apiappnews.herokuapp.com" ;
 String apiAuthorsURL = "/api/users" ;
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterappnewsapp/api/authors_api.dart';
 import 'package:flutterappnewsapp/models/tab_model.dart';
 import 'package:flutterappnewsapp/screens/home%20tabs/favorites.dart';
 import 'package:flutterappnewsapp/screens/home%20tabs/popular.dart';
@@ -15,7 +16,7 @@ enum PopUpMenue { Help, Setings, Contact, About }
 class _HomeScreenState extends State<HomeScreen>
     with SingleTickerProviderStateMixin {
   List<TabModel> tabs;
-
+  AuthorsApi authorsApi =  AuthorsApi();
   TabController _tabController;
 
   @override
@@ -26,6 +27,7 @@ class _HomeScreenState extends State<HomeScreen>
 
   @override
   Widget build(BuildContext context) {
+    authorsApi.featchAllAuthors();
     tabs = List<TabModel>();
     tabs.add(TabModel('Whats New', 'Describstion 11', Colors.red));
     tabs.add(TabModel('Popular', 'Describstion 22', Colors.red));

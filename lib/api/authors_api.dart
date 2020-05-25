@@ -22,8 +22,10 @@ class AuthorsApi {
       }
 
       for (Author author in authors) {
-        print(author.avatar);
+        print(author.id);
+        print(author.email);
       }
     }
+    return authors;
   }
 }
