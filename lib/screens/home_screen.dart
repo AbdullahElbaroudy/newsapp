@@ -6,7 +6,12 @@ import 'package:flutterappnewsapp/models/tab_model.dart';
 import 'package:flutterappnewsapp/screens/home%20tabs/favorites.dart';
 import 'package:flutterappnewsapp/screens/home%20tabs/popular.dart';
 import 'package:flutterappnewsapp/screens/home%20tabs/whats_new.dart';
+import 'package:flutterappnewsapp/screens/important%20screen/about.dart';
+import 'package:flutterappnewsapp/screens/important%20screen/help.dart';
+import 'package:flutterappnewsapp/screens/important%20screen/settings.dart';
 import 'package:flutterappnewsapp/shared%20ui/navigation_drawer.dart';
+
+import 'important screen/contact.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -89,6 +94,30 @@ class _HomeScreenState extends State<HomeScreen>
 
   Widget _popUp(BuildContext context) {
     return PopupMenuButton(
+      onSelected: (PopUpMenue exploreMenue) {
+        switch(exploreMenue){
+          case PopUpMenue.About:
+            Navigator.push(context, MaterialPageRoute(builder: (context){
+              return About();
+            }));
+            break;
+          case PopUpMenue.Help:
+            Navigator.push(context, MaterialPageRoute(builder: (context){
+              return Help();
+            }));
+            break;
+          case PopUpMenue.Contact:
+            Navigator.push(context, MaterialPageRoute(builder: (context){
+              return Contact();
+            }));
+            break;
+          case PopUpMenue.Setings:
+            Navigator.push(context, MaterialPageRoute(builder: (context){
+              return Settings();
+            }));
+            break;
+        }
+      },
       icon: Icon(Icons.more_vert),
       itemBuilder: (context) {
         return [
@@ -100,6 +129,14 @@ class _HomeScreenState extends State<HomeScreen>
             child: Text('Seteings'),
             value: PopUpMenue.Setings,
           ),
+          PopupMenuItem<PopUpMenue>(
+            child: Text('Contact'),
+            value: PopUpMenue.Contact,
+          ),
+          PopupMenuItem<PopUpMenue>(
+            child: Text('A bout'),
+            value: PopUpMenue.About,
+          ),
         ];
       },
     );
@@ -107,7 +144,6 @@ class _HomeScreenState extends State<HomeScreen>
 
   Widget _popOutMenue(BuildContext context) {
     return PopupMenuButton<PopUpMenue>(
-      onSelected: (PopUpMenue exploreMenue) {},
       itemBuilder: (context) {
         return [
           PopupMenuItem<PopUpMenue>(
