@@ -21,14 +21,14 @@ class _HomeScreenState extends State<HomeScreen>
 
   AuthorsApi authorsApi =  AuthorsApi();
   CategoriesApi categoriesApi =CategoriesApi();
-  PostsApi postsApi =PostsApi();
+  PostsApi postsApi = PostsApi();
 
   TabController _tabController;
 
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(initialIndex: 2, length: 3, vsync: this);
+    _tabController = TabController(initialIndex: 1, length: 3, vsync: this);
   }
 
   @override
@@ -38,7 +38,8 @@ class _HomeScreenState extends State<HomeScreen>
     //categoriesApi.featchCategoryWithID("21");
     //categoriesApi.featchCategoryRecentlyUpdate();
     //categoriesApi.featchCategoryTopStories();
-    postsApi.featchAllPosts();
+    //postsApi.featchAllPosts();
+    //postsApi.featchPostsCategory("1");
 
     tabs = List<TabModel>();
     tabs.add(TabModel('Whats New', 'Describstion 11', Colors.red));

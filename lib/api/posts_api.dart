@@ -5,6 +5,43 @@ import 'package:flutterappnewsapp/models/post_model.dart';
 import 'package:flutterappnewsapp/utilites/api_utilites.dart';
 
 class PostsApi {
+  Future<List<Post>>  featchPostsCategory(String sId) async {
+    List<Post> posts = List<Post>();
+    String allPostsCategoryURL = baseApiURL + apiPostsCategory + sId ;
+    var response = await Http.get(allPostsCategoryURL);
+    if (response.statusCode == 200) {
+      var decodedJson = jsonDecode(response.body);
+      var data = decodedJson["data"];
+      for (var item in data) {
+        Post post = Post(
+          title: item["title"].toString(),
+          id: item["id"].toString(),
+          categoryId: item["categoryId"].toString(),
+          content: item["content"].toString(),
+          createdAt: item["created_at"].toString(),
+          dateWritten: item["date_written"].toString(),
+          featuredImage: item["featured_image"].toString(),
+          updatedAt: item["updated_at"].toString(),
+          userId: item["userId"],
+          voteDown: item["vote_down"],
+          voteUp: item["vote_up"],
+          voters_up: (item["voters_up"] == null)
+              ? List<int>()
+              : jsonDecode(item["voters_up"]),
+          voters_down: (item["voters_down"] == null)
+              ? List<int>()
+              : jsonDecode(item["voters_down"]),
+        );
+        posts.add(post);
+      }
+
+      for (Post post in posts) {
+        print(post.id);
+      }
+    }
+    return posts;
+  }
+
   Future<List<Post>> featchAllPosts() async {
     List<Post> posts = List<Post>();
     String allPostsURL = baseApiURL + apiPostsURL;
@@ -13,23 +50,23 @@ class PostsApi {
       var decodedJson = jsonDecode(response.body);
       var data = decodedJson["data"];
       for (var item in data) {
-        posts.add(
-            Post(
+        Post post = Post(
           title: item["title"].toString(),
           id: item["id"].toString(),
           categoryId: item["categoryId"].toString(),
           content: item["content"].toString(),
-          createdAt: item["createdAt"].toString(),
-          dateWritten: item["dateWritten"].toString(),
-          featuredImage: item["featuredImage"].toString(),
-          updatedAt: item["updatedAt"].toString(),
-          userId: item["userId"].toString(),
-          voteDown: item["voteDown"].toString(),
-          voteUp: item["voteUp"].toString(),
-        ));
+          createdAt: item["created_at"].toString(),
+          dateWritten: item["date_written"].toString(),
+          featuredImage: item["featured_image"].toString(),
+          updatedAt: item["updated_at"].toString(),
+          userId: item["userId"],
+          voteDown: item["vote_down"],
+          voteUp: item["vote_up"],
+        );
+        posts.add(post);
       }
 
-      for(Post post in posts){
+      for (Post post in posts) {
         print(post.id);
       }
     }
