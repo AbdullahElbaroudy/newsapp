@@ -1,21 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:flutterappnewsapp/screens/home_screen.dart';
-import 'package:flutterappnewsapp/screens/onboarding.dart';
-import 'package:flutterappnewsapp/screens/test%20screens/self_code.dart';
-import 'package:flutterappnewsapp/screens/twitterfeed.dart';
+import 'utilites/app_theme.dart';
 
 void main()
-{
+ {
+  //SharedPreferences preferences = await SharedPreferences.getInstance();
+ // bool seen = preferences.getBool('seen');
+  runApp(NewsApp(HomeScreen()));
+//  if (seen == null || seen == false){
+//    preferences.setBool('seen',true);
+//    runApp(NewsApp(OnBoarding()));
+//  }else{
+//    runApp(NewsApp(HomeScreen()));
+//  }
 
-  runApp(NewsApp());
 }
 
 class NewsApp extends StatelessWidget {
+  Widget _screen;
+
+  NewsApp(this._screen);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: appTheme,
       debugShowCheckedModeBanner: false,
-      home: HomeScreen() //HomeScreen(),
+      home: _screen //HomeScreen(),
     );
   }
 }

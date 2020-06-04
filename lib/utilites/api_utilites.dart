@@ -8,3 +8,4 @@ String apiCategoryWithId ="/api/category/";
 String apiPostsURL = "/api/posts";
 String apiCommentsURL = "/api/comments";
 String apiPostsCategory ="/api/category/posts/";
+String apiGetToken ="/api/token";

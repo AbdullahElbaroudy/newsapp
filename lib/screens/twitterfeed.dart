@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterappnewsapp/shared%20ui/navigation_drawer.dart';
 
@@ -8,6 +7,7 @@ class TwetterFeed extends StatefulWidget {
 }
 
 class _TwetterFeedState extends State<TwetterFeed> {
+  List<int> ids = List<int>();
   String stringText =
       "Text normal string  , Hello from normal string text without me you dont able to contiue thanks for use";
   String _textLargRondom = "hello  from the large rondom text , thanks for all";
@@ -30,6 +30,9 @@ class _TwetterFeedState extends State<TwetterFeed> {
 
   @override
   Widget build(BuildContext context) {
+
+
+
     return Scaffold(
       drawer: NavigationDrawer(),
       appBar: AppBar(
@@ -46,18 +49,18 @@ class _TwetterFeedState extends State<TwetterFeed> {
         ],
       ),
       body: ListView.builder(
-        itemCount: 5,
+        itemCount: 10,
         itemBuilder: (context, index) {
           return Padding(
             padding: const EdgeInsets.all(15.0),
-            child: _twitterCard(),
+            child: _twitterCard(index),
           );
         },
       ),
     );
   }
 
-  Widget _twitterCard() {
+  Widget _twitterCard(int index) {
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(15.0),
@@ -69,7 +72,7 @@ class _TwetterFeedState extends State<TwetterFeed> {
             _cardBody(),
             SizedBox(height: 20,),
             Divider(thickness: 1,),
-            _cardFoter(),
+            _cardFoter(index),
           ],
         ),
       ),
@@ -115,7 +118,7 @@ class _TwetterFeedState extends State<TwetterFeed> {
     );
   }
 
-  Widget _cardFoter() {
+  Widget _cardFoter(int index) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
@@ -127,7 +130,18 @@ class _TwetterFeedState extends State<TwetterFeed> {
         ),
         ButtonBar(
           children: <Widget>[
-            Icon(Icons.favorite,size: 35,),
+            IconButton(icon: Icon(Icons.favorite,size: 35,color:((ids.contains(index)) ?Colors.red :Colors.grey) ,),onPressed: (){
+              if(ids.contains(index)){
+                ids.remove(index);
+              }else{
+                ids.add(index);
+              }
+              print(ids);
+              setState(() {
+
+              });
+
+            },),
             Icon(Icons.turned_in_not,size: 35,),
           ],
         ),

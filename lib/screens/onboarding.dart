@@ -6,7 +6,8 @@ import 'package:page_view_indicator/page_view_indicator.dart';
 
 
 class OnBoarding extends StatefulWidget {
-  @override
+
+@override
   _OnBoardingState createState() => _OnBoardingState();
 }
 
